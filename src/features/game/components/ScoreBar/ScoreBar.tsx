@@ -27,7 +27,7 @@ const ScoreBar = ({
     <View style={styles.container}>
       <View style={styles.header}>
         <View style={styles.scoreContainer}>
-          <Text style={styles.scoreLabel}>🏆 Bal</Text>
+          <Text style={styles.scoreLabel}>Bal</Text>
           <Text style={styles.scoreValue}>
             {score}
             <Text style={styles.scoreMax}>/{maxScore}</Text>
@@ -35,7 +35,7 @@ const ScoreBar = ({
         </View>
 
         <View style={styles.progressContainer}>
-          <Text style={styles.progressLabel}>⭐ Sual</Text>
+          <Text style={styles.progressLabel}>Sual</Text>
           <Text style={styles.progressValue}>
             {currentQuestion}
             <Text style={styles.progressMax}>/{totalQuestions}</Text>

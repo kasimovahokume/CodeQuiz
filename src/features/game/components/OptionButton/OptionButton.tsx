@@ -31,19 +31,19 @@ const OptionButton = ({
 
   const getBackgroundColor = (): string => {
     if (!showFeedback) {
-      return colors.primary; // Normal - mavi
+      return colors.primary; 
     }
 
     // Cavab verilib
     if (isCorrect) {
-      return colors.correct; // Düzgün cavab - yaşıl
+      return colors.correct; 
     }
 
     if (isSelected && !isCorrect) {
-      return colors.wrong; // Seçilib, səhv - qırmızı
+      return colors.wrong; 
     }
 
-    return colors.cardBg; // Digərləri - solğun
+    return colors.cardBg;
   };
 
   const getIcon = (): string => {
@@ -56,7 +56,7 @@ const OptionButton = ({
   const getOpacity = (): number => {
     if (!showFeedback) return 1;
     if (isCorrect || isSelected) return 1;
-    return 0.5; // Digər variantlar solğun
+    return 0.5; 
   };
 
   return (

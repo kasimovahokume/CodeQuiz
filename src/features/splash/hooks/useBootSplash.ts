@@ -11,7 +11,6 @@ export const useBootSplash = (): UseBootSplashReturn => {
 
   useEffect(() => {
     const init = async () => {
-      // Splash-ı minimum müddət göstər
       await new Promise<void>((resolve) =>
         setTimeout(() => resolve(), APP_CONFIG.SPLASH_DURATION_MS)
       );

@@ -28,7 +28,6 @@ const DifficultyCard = ({
     >
       <View style={styles.content}>
         <View style={styles.leftSection}>
-          <Text style={styles.emoji}>{difficulty.emoji}</Text>
           <View style={styles.textContainer}>
             <Text style={styles.label}>{difficulty.label}</Text>
             <Text style={styles.subLabel}>
@@ -38,7 +37,7 @@ const DifficultyCard = ({
         </View>
 
         <View style={styles.rightSection}>
-          <Text style={styles.highScoreLabel}>🏆 Rekord</Text>
+          <Text style={styles.highScoreLabel}> Rekord</Text>
           <Text style={[styles.highScoreValue, { color: difficulty.color }]}>
             {highScore}
           </Text>
@@ -70,10 +69,6 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     flex: 1,
-  },
-  emoji: {
-    fontSize: 40,
-    marginRight: spacing.md,
   },
   textContainer: {
     flex: 1,

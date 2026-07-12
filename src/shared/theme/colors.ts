@@ -1,35 +1,36 @@
 export const colors = {
-  // Background
-  background: '#1A1A2E',
-  cardBg: '#16213E',
-  surface: '#0F3460',
+  // Backgrounds - Soft dark
+  background: '#0F0F1E',
+  cardBg: '#1A1A2E',
+  surface: '#252540',
   
-  // Difficulty
-  easy: '#00E676',
-  medium: '#FFD600',
-  hard: '#FF1744',
+  // Primary - Soft violet
+  primary: '#A78BFA',           // Violet-400 (softer)
+  accent: '#F472B6',            // Pink-400
+  
+  // Difficulty - Soft neon
+  easy: '#34D399',              // Emerald-400 (softer)
+  medium: '#FBBF24',            // Amber-400
+  hard: '#F87171',              // Red-400 (softer)
   
   // States
-  correct: '#00E676',
-  wrong: '#FF1744',
-  primary: '#7C4DFF',
+  correct: '#34D399',
+  wrong: '#F87171',
   
   // Text
   white: '#FFFFFF',
-  textLight: '#E0E0E0',
-  textMuted: '#9E9E9E',
-  textDark: '#1A1A2E',
+  textLight: '#CBD5E1',         // Slate-300
+  textMuted: '#64748B',         // Slate-500
+  textDark: '#0F172A',
   
-  // Score
-  scoreBg: '#FF6D00',
-  gold: '#FFD700',
-  
-  // Modal
-  modalBg: '#16213E',
-  overlay: 'rgba(0, 0, 0, 0.8)',
+  // Special
+  gold: '#FCD34D',              // Amber-300
+  scoreBg: '#FB923C',           // Orange-400
   
   // Borders
-  border: '#2D3561',
+  border: '#2D2D4A',
+  modalBg: '#1A1A2E',
+  overlay: 'rgba(0, 0, 0, 0.7)',
 } as const;
 
 export type ColorKey = keyof typeof colors;

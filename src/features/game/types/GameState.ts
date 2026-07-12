@@ -10,8 +10,6 @@ export type GameState = {
   correctAnswers: number;
   selectedAnswer: string | null;
   answerStatus: AnswerStatus;
-  isGameOver: boolean;
-  gameResult: GameResult | null;
 };
 
 export type GameResult = {

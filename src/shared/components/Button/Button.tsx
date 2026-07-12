@@ -26,19 +26,23 @@ const Button = ({
   textStyle,
 }: ButtonProps) => {
   const isDisabled = disabled || loading;
+  const bgColor = getBackgroundColor(variant, isDisabled);
 
   return (
     <TouchableOpacity
       style={[
         styles.button,
-        { backgroundColor: getBackgroundColor(variant, isDisabled) },
+        {
+          backgroundColor: bgColor,
+          shadowColor: bgColor,
+        },
         getPadding(size),
         fullWidth && styles.fullWidth,
         style,
       ]}
       onPress={onPress}
       disabled={isDisabled}
-      activeOpacity={0.8}
+      activeOpacity={0.85}
     >
       {loading ? (
         <ActivityIndicator color={colors.white} size="small" />
@@ -59,14 +63,13 @@ const Button = ({
 
 const styles = StyleSheet.create({
   button: {
-    borderRadius: borderRadius.md,
+    borderRadius: borderRadius.lg,
     alignItems: 'center',
     justifyContent: 'center',
-    shadowColor: '#000',
-    shadowOffset: { width: 0, height: 2 },
-    shadowOpacity: 0.25,
-    shadowRadius: 3.84,
-    elevation: 5,
+    shadowOffset: { width: 0, height: 8 },
+    shadowOpacity: 0.4,
+    shadowRadius: 12,
+    elevation: 10,
   },
   fullWidth: {
     width: '100%',
@@ -74,8 +77,10 @@ const styles = StyleSheet.create({
   text: {
     color: colors.white,
     fontFamily: fonts.regular,
-    fontWeight: '600',
+    fontWeight: '700',
     textAlign: 'center',
+    letterSpacing: 1,
+    textTransform: 'uppercase',
   },
 });
 

@@ -1,41 +1,39 @@
-import React, { useState } from 'react';
+import React from 'react';
 import {
   View,
   Text,
-  TextInput,
   StyleSheet,
   StatusBar,
   KeyboardAvoidingView,
   Platform,
-  TouchableWithoutFeedback,
-  Keyboard,
+  Image,
 } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { FlashList } from '@shopify/flash-list';
+import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import {
   colors,
   fonts,
   fontSize,
   spacing,
-  borderRadius,
 } from '../../../../shared/theme';
 import { APP_CONFIG } from '../../../../shared/constants';
-import { Difficulty, DifficultyInfo } from '../../../../shared/types';
+import {
+  Difficulty,
+  DifficultyInfo,
+  RootStackParamList,
+} from '../../../../shared/types';
 import { getAllHighScores } from '../../../../shared/storage';
 import { DIFFICULTIES } from '../../constants';
 import DifficultyCard from '../DifficultyCard';
 
-type HomeScreenProps = {
-  onSelectDifficulty: (difficulty: Difficulty, playerName: string) => void;
-};
+type HomeScreenProps = NativeStackScreenProps<RootStackParamList, 'Home'>;
 
-const HomeScreen = ({ onSelectDifficulty }: HomeScreenProps) => {
-  const [playerName, setPlayerName] = useState('');
+const HomeScreen = ({ navigation }: HomeScreenProps) => {
   const highScores = getAllHighScores();
 
   const handleSelectDifficulty = (difficulty: Difficulty) => {
-    const name = playerName.trim() || 'Oyunçu';
-    onSelectDifficulty(difficulty, name);
+    navigation.navigate('Game', { difficulty });
   };
 
   const renderItem = ({ item }: { item: DifficultyInfo }) => (
@@ -48,54 +46,38 @@ const HomeScreen = ({ onSelectDifficulty }: HomeScreenProps) => {
 
   return (
     <SafeAreaView style={styles.container} edges={['top', 'bottom']}>
-      <StatusBar
-        barStyle="light-content"
-        backgroundColor={colors.background}
-      />
+      <StatusBar barStyle="light-content" backgroundColor={colors.background} />
 
       <KeyboardAvoidingView
         style={styles.keyboardView}
         behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
       >
-        <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
-          <View style={styles.content}>
-            {/* Header */}
-            <View style={styles.header}>
-              <Text style={styles.emoji}>🧠</Text>
-              <Text style={styles.title}>{APP_CONFIG.NAME}</Text>
-              <Text style={styles.subtitle}>{APP_CONFIG.DESCRIPTION}</Text>
-            </View>
+        <View style={styles.content}>
+          {/* Header */}
+          <View style={styles.header}>
+            <Image
+              style={styles.logo}
+              source={require('../../../../assets/images/brain.png')}
+            />
+            <Text style={styles.title}>{APP_CONFIG.NAME}</Text>
+            <Text style={styles.subtitle}>{APP_CONFIG.DESCRIPTION}</Text>
+          </View>
 
-            {/* Player Name Input */}
-            <View style={styles.inputContainer}>
-              <Text style={styles.inputLabel}>👤 Adınız</Text>
-              <TextInput
-                style={styles.input}
-                placeholder="Adınızı daxil edin..."
-                placeholderTextColor={colors.textMuted}
-                value={playerName}
-                onChangeText={setPlayerName}
-                maxLength={20}
-                returnKeyType="done"
+          {/* Difficulty Selection */}
+          <View style={styles.difficultySection}>
+            <Text style={styles.sectionTitle}>Çətinlik səviyyəsini seç</Text>
+
+            <View style={styles.listWrapper}>
+              <FlashList
+                data={DIFFICULTIES}
+                renderItem={renderItem}
+                keyExtractor={item => item.key}
+                showsVerticalScrollIndicator={false}
+                contentContainerStyle={styles.listContainer}
               />
             </View>
-
-            {/* Difficulty Selection - FlashList */}
-            <View style={styles.difficultySection}>
-              <Text style={styles.sectionTitle}>Çətinlik səviyyəsini seç</Text>
-
-              <View style={styles.listWrapper}>
-                <FlashList
-                  data={DIFFICULTIES}
-                  renderItem={renderItem}
-                  keyExtractor={(item) => item.key}
-                  showsVerticalScrollIndicator={false}
-                  contentContainerStyle={styles.listContainer}
-                />
-              </View>
-            </View>
           </View>
-        </TouchableWithoutFeedback>
+        </View>
       </KeyboardAvoidingView>
     </SafeAreaView>
   );
@@ -118,9 +100,16 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     marginBottom: spacing.xl,
   },
-  emoji: {
-    fontSize: 70,
-    marginBottom: spacing.sm,
+  logo: {
+    width: 120,
+    height: 120,
+    marginBottom: spacing.md,
+    resizeMode: 'contain',
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 4 },
+    shadowOpacity: 0.3,
+    shadowRadius: 6,
+    elevation: 8,
   },
   title: {
     color: colors.white,
@@ -136,27 +125,6 @@ const styles = StyleSheet.create({
     fontSize: fontSize.md,
     fontWeight: '400',
     textAlign: 'center',
-  },
-  inputContainer: {
-    marginBottom: spacing.lg,
-  },
-  inputLabel: {
-    color: colors.textLight,
-    fontFamily: fonts.regular,
-    fontSize: fontSize.md,
-    fontWeight: '600',
-    marginBottom: spacing.sm,
-  },
-  input: {
-    backgroundColor: colors.cardBg,
-    borderRadius: borderRadius.md,
-    paddingHorizontal: spacing.md,
-    paddingVertical: spacing.md,
-    color: colors.white,
-    fontFamily: fonts.regular,
-    fontSize: fontSize.md,
-    borderWidth: 2,
-    borderColor: colors.border,
   },
   difficultySection: {
     flex: 1,

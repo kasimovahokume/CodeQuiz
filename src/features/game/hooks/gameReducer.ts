@@ -9,8 +9,6 @@ export const initialGameState: GameState = {
   correctAnswers: 0,
   selectedAnswer: null,
   answerStatus: 'idle',
-  isGameOver: false,
-  gameResult: null,
 };
 
 export const gameReducer = (
@@ -43,19 +41,6 @@ export const gameReducer = (
         currentQuestionIndex: state.currentQuestionIndex + 1,
         selectedAnswer: null,
         answerStatus: 'idle',
-      };
-
-    case 'END_GAME':
-      return {
-        ...state,
-        isGameOver: true,
-        gameResult: action.payload,
-      };
-
-    case 'RESET_GAME':
-      return {
-        ...initialGameState,
-        questions: action.payload,
       };
 
     default:

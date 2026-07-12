@@ -6,14 +6,16 @@ import { GameResult } from '../types';
 import { getShuffledQuestions } from '../utils';
 import { gameReducer, initialGameState } from './gameReducer';
 
-export const useGame = (difficulty: Difficulty) => {
+export const useGame = (
+  difficulty: Difficulty,
+  onGameOver: (result: GameResult) => void
+) => {
   const [state, dispatch] = useReducer(gameReducer, initialGameState);
 
   const currentQuestion = state.questions[state.currentQuestionIndex] ?? null;
   const isLastQuestion =
     state.currentQuestionIndex >= state.questions.length - 1;
 
-  // Oyun başlayanda sualları yüklə
   useEffect(() => {
     const questions = getShuffledQuestions(difficulty);
     dispatch({ type: 'LOAD_QUESTIONS', payload: questions });
@@ -49,24 +51,18 @@ export const useGame = (difficulty: Difficulty) => {
             isNewHighScore,
           };
 
-          dispatch({ type: 'END_GAME', payload: result });
+          onGameOver(result);
         } else {
           dispatch({ type: 'NEXT_QUESTION' });
         }
       }, GAME_CONFIG.ANSWER_DELAY_MS);
     },
-    [state, currentQuestion, isLastQuestion, difficulty]
+    [state, currentQuestion, isLastQuestion, difficulty, onGameOver]
   );
-
-  const resetGame = useCallback(() => {
-    const questions = getShuffledQuestions(difficulty);
-    dispatch({ type: 'RESET_GAME', payload: questions });
-  }, [difficulty]);
 
   return {
     ...state,
     currentQuestion,
     selectAnswer,
-    resetGame,
   };
 };
