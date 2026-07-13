@@ -10,7 +10,8 @@
     "android-upt": "cd android && .\\gradlew clean && .\\gradlew && cd ..",
     "test": "jest",
     "asset": "npx react-native-asset",
-    "generate-splash": "npx react-native-bootsplash generate ./src/assets/images/logo.png --background=1A1A2E --platforms=android,ios"
+    "generate-splash": "npx react-native-bootsplash generate ./src/assets/images/logo.png --background=1A1A2E --platforms=android,ios",
+    "release": "cd android && .\\gradlew app:assembleRelease && cd .."
   },
   "dependencies": {
     "@react-native/new-app-screen": "0.83.0",
