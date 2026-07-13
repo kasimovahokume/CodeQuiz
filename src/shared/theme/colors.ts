@@ -5,27 +5,27 @@ export const colors = {
   surface: '#252540',
   
   // Primary - Soft violet
-  primary: '#A78BFA',           // Violet-400 (softer)
-  accent: '#F472B6',            // Pink-400
+  primary: '#A78BFA',           
+  accent: '#F472B6',           
   
   // Difficulty - Soft neon
-  easy: '#34D399',              // Emerald-400 (softer)
-  medium: '#FBBF24',            // Amber-400
-  hard: '#F87171',              // Red-400 (softer)
+  easy: '#34D399',             
+  medium: '#FBBF24',            
+  hard: '#F87171',              
   
   // States
-  correct: '#34D399',
-  wrong: '#F87171',
+  correct: '#026d46',
+  wrong: '#b10202',
   
   // Text
   white: '#FFFFFF',
-  textLight: '#CBD5E1',         // Slate-300
-  textMuted: '#64748B',         // Slate-500
+  textLight: '#CBD5E1',         
+  textMuted: '#64748B',        
   textDark: '#0F172A',
   
   // Special
-  gold: '#FCD34D',              // Amber-300
-  scoreBg: '#FB923C',           // Orange-400
+  gold: '#FCD34D',              
+  scoreBg: '#FB923C',         
   
   // Borders
   border: '#2D2D4A',
