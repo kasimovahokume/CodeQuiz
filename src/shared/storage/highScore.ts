@@ -1,6 +1,5 @@
 import { Difficulty } from '../types';
 
-// Memory storage (app bağlananda itir - amma MMKV problemi həll olur)
 const memoryStorage: Record<string, number> = {};
 
 const HIGH_SCORE_PREFIX = 'highScore_';

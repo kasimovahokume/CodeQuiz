@@ -1,5 +1,3 @@
-// MMKV müvəqqəti deaktiv - memory storage istifadə edirik
-// Sonra MMKV rebuild ediləndə geri qaytaracağıq
 
 export const storage = {
   set: (key: string, value: any) => {},
